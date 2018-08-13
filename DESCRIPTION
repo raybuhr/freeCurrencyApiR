@@ -1,0 +1,19 @@
+Package: freeCurrencyApiR
+Type: Package
+Title: R friendly interface for https://free.currencyconverterapi.com API
+Version: 0.1.0
+Authors@R: person("Ray", "Buhr", email = "raymond.buhr@gmail.com", role = c("aut", "cre"))
+Maintainer: Ray Buhr <raymond.buhr@gmail.com>
+Description: freeCurrencyApiR provides functions for getting current and historical currency exchange rates.
+    Please refer to The Free Currency Converter API <https://free.currencyconverterapi.com> for
+    all endpoints available and rate limits. 
+Depends: 
+    R (>= 3.1)
+Imports:
+    httr
+Suggests:
+    jsonlite
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.1.0

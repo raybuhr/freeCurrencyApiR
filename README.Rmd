@@ -1,0 +1,70 @@
+---
+title: "freeCurrencyApiR"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(freeCurrencyApiR)
+```
+
+freeCurrencyApiR provides functions for getting current and historical currency exchange rates.
+Please refer to The Free Currency Converter API <https://free.currencyconverterapi.com> for
+all endpoints available and rate limits. 
+
+From the website:
+
+```
+Rate Limits of the Free API
+Conversion Pairs per Request: 2
+Number of Requests per Hour: 100
+Date Range in History: 8 Days
+Allowed Back in History: 1 Year(s)
+
+Currency values are updated every 60 minutes. 
+If you need a realtime web service or a service that updates more frequently, 
+you may checkout the premium service at CurrencyConverterAPI.com.
+```
+
+## Install
+
+```r
+devtools::install_github("raybuhr/freeCurrencyApiR")
+```
+
+## Examples
+
+Get lists of the countries and currencies available:
+
+```{r}
+currencies <- free_currency_api_list_currencies()
+currencies$results[[1]]
+```
+
+```{r}
+countries <- free_currency_api_list_countries()
+countries$results[[1]]
+```
+
+Get the current exchange rate between two currencies (based on a 60 minute refresh cache):
+
+```{r}
+free_currency_api_get_current(currency_from = "USD", currency_to = "CNY", compact = "ultra")
+```
+
+Get a `data.frame` of daily historical exchange rates between two currencies (No idea when the daily rate snapshot is taken):
+
+```{r}
+free_currency_api_get_historical(
+  currency_from = "USD", currency_to = "INR", 
+  start_date = "2018-04-01", end_date = "2018-04-08"
+)
+```
+
+## Bugs/Issues
+
+Report at [https://github.com/raybuhr/freeCurrencyApiR/issues](https://github.com/raybuhr/freeCurrencyApiR/issues)
+
+## Contributing
+
+Feel free to provide pull requests!
