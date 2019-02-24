@@ -25,6 +25,8 @@ devtools::install_github("raybuhr/freeCurrencyApiR")
 Setup
 -----
 
+This is only required once, right after install.
+
 You will need to [signup to get an API key](https://free.currencyconverterapi.com/free-api-key). Once you get the email with your key and confirm your email address by clicking through the included link, add this key to your `.Renviron`. If you are unfamiliar with this, you can run
 
 ``` r
@@ -36,6 +38,8 @@ This will open up the `.Renviron` file for you to edit. Add a new line like this
 ``` sh
 FREE_CURRENCY_API_KEY=c224f8b5ee2f30e42256
 ```
+
+Restart your R Session.
 
 Examples
 --------
