@@ -30,5 +30,7 @@ The Historical Rates function returns a data.frame with 4 variables:
   rate -- numeric representing the exchange value at that date
 }
 \examples{
+\dontrun{
 free_currency_api_get_historical("USD", "PHP", "2018-07-04", "2018-07-11")
+}
 }

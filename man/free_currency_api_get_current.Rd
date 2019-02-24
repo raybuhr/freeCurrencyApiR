@@ -25,5 +25,7 @@ The Current Rate function returns a list of the exchange -- from currency and to
 and the current exchange rate as a numeric.
 }
 \examples{
+\dontrun{
 free_currency_api_get_current("USD", "PHP", "ultra")
+}
 }
