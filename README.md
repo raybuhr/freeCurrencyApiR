@@ -22,6 +22,21 @@ Install
 devtools::install_github("raybuhr/freeCurrencyApiR")
 ```
 
+Setup
+-----
+
+You will need to [signup to get an API key](https://free.currencyconverterapi.com/free-api-key). Once you get the email with your key and confirm your email address by clicking through the included link, add this key to your `.Renviron`. If you are unfamiliar with this, you can run
+
+``` r
+usethis::edit_r_environ()
+```
+
+This will open up the `.Renviron` file for you to edit. Add a new line like this
+
+``` sh
+FREE_CURRENCY_API_KEY=c224f8b5ee2f30e42256
+```
+
 Examples
 --------
 
@@ -43,26 +58,26 @@ currencies$results[[1]]
 
 ``` r
 countries <- free_currency_api_list_countries()
-countries$results[[1]]
+countries$results[[42]]
 ```
 
     ## $alpha3
-    ## [1] "AFG"
+    ## [1] "ARG"
     ## 
     ## $currencyId
-    ## [1] "AFN"
+    ## [1] "ARS"
     ## 
     ## $currencyName
-    ## [1] "Afghan afghani"
+    ## [1] "Argentine peso"
     ## 
     ## $currencySymbol
-    ## [1] "\u060b"
+    ## [1] "$"
     ## 
     ## $id
-    ## [1] "AF"
+    ## [1] "AR"
     ## 
     ## $name
-    ## [1] "Afghanistan"
+    ## [1] "Argentina"
 
 Get the current exchange rate between two currencies (based on a 60 minute refresh cache):
 
@@ -71,7 +86,7 @@ free_currency_api_get_current(currency_from = "USD", currency_to = "CNY", compac
 ```
 
     ## $USD_CNY
-    ## [1] 6.890499
+    ## [1] 6.714204
 
 Get a `data.frame` of daily historical exchange rates between two currencies (No idea when the daily rate snapshot is taken):
 

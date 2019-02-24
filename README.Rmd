@@ -32,6 +32,20 @@ you may checkout the premium service at CurrencyConverterAPI.com.
 devtools::install_github("raybuhr/freeCurrencyApiR")
 ```
 
+## Setup
+
+You will need to [signup to get an API key](https://free.currencyconverterapi.com/free-api-key). Once you get the email with your key and confirm your email address by clicking through the included link, add this key to your `.Renviron`. If you are unfamiliar with this, you can run 
+
+```r
+usethis::edit_r_environ()
+```
+
+This will open up the `.Renviron` file for you to edit. Add a new line like this
+
+```sh
+FREE_CURRENCY_API_KEY=c224f8b5ee2f30e42256
+```
+
 ## Examples
 
 Get lists of the countries and currencies available:
@@ -43,7 +57,7 @@ currencies$results[[1]]
 
 ```{r}
 countries <- free_currency_api_list_countries()
-countries$results[[1]]
+countries$results[[42]]
 ```
 
 Get the current exchange rate between two currencies (based on a 60 minute refresh cache):
