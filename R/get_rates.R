@@ -12,15 +12,21 @@
 #' @param currency_to The 3-letter ISO currency code
 #' @param compact The compactness of the output format. There are three options: y, n, ultra.
 #' @examples
+#' \dontrun{
 #' free_currency_api_get_current("USD", "PHP", "ultra")
+#' }
 #' @export
 free_currency_api_get_current <- function(
   currency_from, currency_to, compact="ultra"
 ) {
+  try(if (is.na(Sys.getenv("FREE_CURRENCY_API_KEY")))
+    stop("Need to first set environment variable FREE_CURRENCY_API_KEY.")
+  )
   base_url = "https://free.currencyconverterapi.com/api/v6/convert"
   exchange = paste(currency_from, currency_to, sep = "_")
   req <- httr::GET(base_url, query = list(
-    q = exchange, compact = compact
+    q = exchange, compact = compact,
+    apiKey = Sys.getenv("FREE_CURRENCY_API_KEY")
   ))
   httr::stop_for_status(req)
   return(httr::content(req))
@@ -44,15 +50,21 @@ free_currency_api_get_current <- function(
 #' @param start_date YYYY-mm-dd formatted date
 #' @param end_date YYYY-mm-dd formatted date
 #' @examples
+#' \dontrun{
 #' free_currency_api_get_historical("USD", "PHP", "2018-07-04", "2018-07-11")
+#' }
 #' @export
 free_currency_api_get_historical <- function(
   currency_from, currency_to, start_date, end_date
 ) {
+  try(if (is.na(Sys.getenv("FREE_CURRENCY_API_KEY")))
+    stop("Need to first set environment variable FREE_CURRENCY_API_KEY.")
+  )
   base_url = "https://free.currencyconverterapi.com/api/v6/convert"
   exchange = paste(currency_from, currency_to, sep = "_")
   req <- httr::GET(base_url, query = list(
-    q = exchange, date = start_date, endDate = end_date, compact = "n"
+    q = exchange, date = start_date, endDate = end_date, compact = "n",
+    apiKey = Sys.getenv("FREE_CURRENCY_API_KEY")
   ))
   httr::stop_for_status(req)
   resp <- httr::content(req)
@@ -76,7 +88,11 @@ free_currency_api_get_historical <- function(
 #'
 #' @export
 free_currency_api_list_currencies <- function() {
-  req <- httr::GET("https://free.currencyconverterapi.com/api/v6/currencies")
+  try(if (is.na(Sys.getenv("FREE_CURRENCY_API_KEY")))
+    stop("Need to first set environment variable FREE_CURRENCY_API_KEY.")
+  )
+  req <- httr::GET("https://free.currencyconverterapi.com/api/v6/currencies",
+                   query = list(apiKey = Sys.getenv("FREE_CURRENCY_API_KEY")))
   httr::stop_for_status(req)
   return(httr::content(req))
 }
@@ -90,7 +106,11 @@ free_currency_api_list_currencies <- function() {
 #'
 #' @export
 free_currency_api_list_countries <- function() {
-  req <- httr::GET("https://free.currencyconverterapi.com/api/v6/countries")
+  try(if (is.na(Sys.getenv("FREE_CURRENCY_API_KEY")))
+    stop("Need to first set environment variable FREE_CURRENCY_API_KEY.")
+  )
+  req <- httr::GET("https://free.currencyconverterapi.com/api/v6/countries",
+                   query = list(apiKey = Sys.getenv("FREE_CURRENCY_API_KEY")))
   httr::stop_for_status(req)
   return(httr::content(req))
 }
